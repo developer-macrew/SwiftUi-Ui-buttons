@@ -1,12 +1,28 @@
 import XCTest
+import SwiftUI
 @testable import SwiftUIButtons
 
 final class SwiftUIButtonsTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
+    private var app: XCUIApplication!
+      
+      override func setUpWithError() throws {
+          continueAfterFailure = false
+          app = XCUIApplication()
+          app.launch()
+      }
+      
+      override func tearDownWithError() throws {
+          app = nil
+      }
 
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
-    }
+      func testButtonClickChangesText() throws {
+          let button = app.buttons["clickButton"]
+          XCTAssertTrue(button.exists)
+          button.tap()
+
+          let resultText = app.staticTexts["resultText"]
+          XCTAssertTrue(resultText.exists)
+          XCTAssertEqual(resultText.label, "Button clicked!")
+      }
+
 }

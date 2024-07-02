@@ -70,21 +70,34 @@ public struct OutlineButton: View {
     var text: String
     var action: () -> Void
     
-    public init(text: String, action: @escaping () -> Void) {
+    var backgroundColor : Color
+    var foregroundColor : Color
+    var cornerRadius : CGFloat
+    var roundedCornorRaduis : CGFloat
+    var strokeColor : Color
+    var stroKeLineWidth : CGFloat
+    
+    public init(text: String, action: @escaping () -> Void,backgroundColor: Color, foregroundColor: Color, cornorRaduis:CGFloat,roundedCornorRaduis:CGFloat,strokeColor: Color, strokeLineWidth:CGFloat) {
         self.text = text
         self.action = action
+        self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
+        self.cornerRadius = cornorRaduis
+        self.roundedCornorRaduis = roundedCornorRaduis
+        self.strokeColor = strokeColor
+        self.stroKeLineWidth = strokeLineWidth
     }
 
     public var body: some View {
         Button(action: action) {
             Text(text)
-                .foregroundColor(.red)
+                .foregroundColor(foregroundColor)
                 .padding()
-                .background(Color.white)
-                .cornerRadius(10)
+                .background(backgroundColor)
+                .cornerRadius(cornerRadius)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.blue, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(strokeColor, lineWidth: stroKeLineWidth)
                 )
         }
     }
@@ -131,22 +144,34 @@ public struct IconButton: View {
         
         var text: String
         var action: () -> Void
+        var backgroundColor : Color
+        var foregroundColor : Color
+        var cornerRadius : CGFloat
+        var roundedCornorRaduis : CGFloat
+        var strokeColor : Color
+        var strokeLineWidth : CGFloat
         
-        public init(text: String, action: @escaping () -> Void) {
+        public init(text: String, action: @escaping () -> Void, backgroundColor: Color,foregroundColor:Color,cornorRaduis:CGFloat,roundedCornorRaduis:CGFloat,strokColor:Color,strokeLineWidth: CGFloat) {
             self.text = text
             self.action = action
+            self.backgroundColor = backgroundColor
+            self.foregroundColor = foregroundColor
+            self.cornerRadius = cornorRaduis
+            self.roundedCornorRaduis = roundedCornorRaduis
+            self.strokeColor = strokColor
+            self.strokeLineWidth = strokeLineWidth
         }
 
         public var body: some View {
             Button(action: action) {
                 Text(text)
-                    .foregroundColor(.red)
+                    .foregroundColor(foregroundColor)
                     .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
+                    .background(backgroundColor)
+                    .cornerRadius(cornerRadius)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.blue, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                            .stroke(strokeColor, lineWidth: strokeLineWidth)
                     )
             }
         }
