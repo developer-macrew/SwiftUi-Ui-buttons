@@ -138,58 +138,42 @@ public struct IconButton: View {
                 )
         }
     }
+}
+@available (iOS 13.0.0 ,*)
+public struct GradientButton: View {
+    var text: String
+    var action: () -> Void
+    var foregroundColor : Color
+    var cornerRadius : CGFloat
+    var linearGradientColor : [Color]
+    var startPoint : UnitPoint
+    var endPoint: UnitPoint
+    var shadowColor : Color
+    var shadowOffsetHorizontally : CGFloat
+    var shadowOffsetVertically : CGFloat
     
-    @available (iOS 13.0.0 ,*)
-    public struct GradientButton: View {
-        
-        var text: String
-        var action: () -> Void
-        var backgroundColor : Color
-        var foregroundColor : Color
-        var cornerRadius : CGFloat
-        var roundedCornorRaduis : CGFloat
-        var strokeColor : Color
-        var strokeLineWidth : CGFloat
-        
-        public init(text: String, action: @escaping () -> Void, backgroundColor: Color,foregroundColor:Color,cornorRaduis:CGFloat,roundedCornorRaduis:CGFloat,strokColor:Color,strokeLineWidth: CGFloat) {
-            self.text = text
-            self.action = action
-            self.backgroundColor = backgroundColor
-            self.foregroundColor = foregroundColor
-            self.cornerRadius = cornorRaduis
-            self.roundedCornorRaduis = roundedCornorRaduis
-            self.strokeColor = strokColor
-            self.strokeLineWidth = strokeLineWidth
-        }
+    public init(text: String, action: @escaping () -> Void,foregroundColor:Color,cornorRaduis:CGFloat, linerGradientPoint:[Color],startPoint:UnitPoint, endPoint: UnitPoint, shadowColor: Color,shadowOffsetHorizontally:CGFloat,shadowOffsetVertically:CGFloat) {
+        self.text = text
+        self.action = action
+        self.foregroundColor = foregroundColor
+        self.cornerRadius = cornorRaduis
+        self.linearGradientColor = linerGradientPoint
+        self.startPoint = startPoint
+        self.endPoint = endPoint
+        self.shadowColor = shadowColor
+        self.shadowOffsetHorizontally = shadowOffsetHorizontally
+        self.shadowOffsetVertically = shadowOffsetVertically
+    }
 
-        public var body: some View {
-            Button(action: action) {
-                Text(text)
-                    .foregroundColor(foregroundColor)
-                    .padding()
-                    .background(backgroundColor)
-                    .cornerRadius(cornerRadius)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: cornerRadius)
-                            .stroke(strokeColor, lineWidth: strokeLineWidth)
-                    )
-            }
+    public var body: some View {
+        Button(action: action) {
+            Text(text)
+                .foregroundColor(foregroundColor)
+                .padding()
+                .background(Capsule()
+                    .fill(LinearGradient(colors: linearGradientColor, startPoint: startPoint, endPoint:endPoint))
+                    .shadow(color: shadowColor, radius: cornerRadius, x:shadowOffsetHorizontally, y: shadowOffsetVertically)
+                )
         }
-            
-//            Button(action: {
-//                 
-//            }, label: {
-//                Text("Male")
-////                    .font(.system(size: 18, type: .medium))
-//                    .foregroundColor(Color("WhiteColor"))
-//                    .frame(maxWidth: .infinity, maxHeight: 70)
-//            })
-//            .padding()
-//            .background(
-//                Capsule()
-//                    .fill(LinearGradient(colors: [Color("PurpleColor"),Color("VioletColor")], startPoint: .leading, endPoint: .trailing))
-//                    .shadow(color: Color("WhiteColor"), radius: 2, x: 0, y: 2)
-//            )
-        
     }
 }
