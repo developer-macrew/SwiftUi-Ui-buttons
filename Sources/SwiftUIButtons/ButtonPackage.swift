@@ -23,9 +23,9 @@ public struct ButtonPackage {
 //        OutlineButton(text: text, action: action, backgroundColor: backGroundColor, foregroundColor: foreGroundColor, cornorRaduis: conorRaduis, roundedCornorRaduis: roundedCornorRaduis, strokeColor: strokeColor, strokeLineWidth: strokeLineWidth)
 //    }
     
-    public static func iconButton(icon: Image,  action: @escaping () -> Void ,backgroundColor:Color,foregroundColor:Color,cornorRaduis:CGFloat,roundedCornorRaduis:CGFloat,strokeColor:Color,strokeLineWidth:CGFloat) -> some View {
-        IconButton(icon: icon, action: action, backgroundColor: backgroundColor, foregroundColor: foregroundColor, cornorRaduis: cornorRaduis, roundedCornorRaduis: roundedCornorRaduis, strokeColor: strokeColor, strokeLineWidth: strokeLineWidth)
-    }
+//    public static func iconButton(icon: Image,  action: @escaping () -> Void ,backgroundColor:Color,foregroundColor:Color,cornorRaduis:CGFloat,roundedCornorRaduis:CGFloat,strokeColor:Color,strokeLineWidth:CGFloat) -> some View {
+//        IconButton(icon: icon, action: action, backgroundColor: backgroundColor, foregroundColor: foregroundColor, cornorRaduis: cornorRaduis, roundedCornorRaduis: roundedCornorRaduis, strokeColor: strokeColor, strokeLineWidth: strokeLineWidth)
+//    }
     
 //    public static func gradientBottomLeftToRight(text:String,backGroundColor:Color,foreGroundColor:Color,cornorRaduis:CGFloat,action: @escaping ()-> Void, linerGradintColor:[Color],startPoint:UnitPoint,endPoint:UnitPoint,shadowColor:Color,shadowoffsetHorizontally:CGFloat,shadowoffsetVertically:CGFloat){
 //        GradientButton(text: text, action: action, foregroundColor: foreGroundColor, cornorRaduis: cornorRaduis, linerGradientPoint: linerGradintColor, startPoint: startPoint, endPoint: endPoint, shadowColor: shadowColor, shadowOffsetHorizontally: shadowoffsetHorizontally, shadowOffsetVertically: shadowoffsetVertically)
