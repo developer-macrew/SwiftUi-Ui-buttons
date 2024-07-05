@@ -195,9 +195,10 @@ public struct GradientButton: View {
 @available(iOS 13.0.0,*)
 public struct RotationButton: View {
     var text : String
+    var icon : Image
     var action : () -> Void
-    var maxWidth : UnitPoint
-    var maxHeight : UnitPoint
+    var iconMaxWidth : CGFloat
+    var iconMaxHeight : CGFloat
     var fontSize : CGFloat
     var fontDesign : Font.Design
     var fontWeigt : Font.Weight
@@ -213,11 +214,12 @@ public struct RotationButton: View {
     var rotationDegree : CGFloat
     var scaleEffect : CGFloat
     
-    public init(text: String, action: @escaping () -> Void, maxWidth: UnitPoint, maxHeight: UnitPoint, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color, cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat) {
+    public init(text: String, icon :Image, action: @escaping () -> Void, iconMaxWidth: CGFloat, iconMaxHeight: CGFloat, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color, cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat) {
         self.text = text
+        self.icon = icon
         self.action = action
-        self.maxWidth = maxWidth
-        self.maxHeight = maxHeight
+        self.iconMaxWidth = iconMaxWidth
+        self.iconMaxHeight = iconMaxHeight
         self.fontSize = fontSize
         self.fontDesign = fontDesign
         self.fontWeigt = fontWeigt
@@ -236,11 +238,21 @@ public struct RotationButton: View {
     
     public var body: some View {
         Button(action: action) {
-            Text(text)
-            //                .font(.headline)
-                .font(.system(size: fontSize, weight:fontWeigt, design: fontDesign))
-                .padding()
-                .frame(maxWidth: .infinity)
+//            Text(text)
+//                .font(.system(size: fontSize, weight:fontWeigt, design: fontDesign))
+//                .padding()
+//                .frame(maxWidth:maxWidth, maxHeight: maxHeight)
+            HStack(alignment: .center,spacing: 0){
+                Text(text)
+                    .font(.system(size: fontSize, weight:fontWeigt, design: fontDesign))
+                    .padding()
+                
+                icon
+                    .resizable()
+                    .frame(maxWidth: iconMaxWidth, maxHeight:iconMaxHeight)
+                    .cornerRadius(22)
+            }
+            .frame(maxWidth: 280,maxHeight: 50)
         }
         .buttonStyle(RotatingButtonStyle(color: color, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect))
     }

@@ -10,7 +10,9 @@ import SwiftUI
 
 @available(iOS 13.0.0,*)
 struct RotatingButtonStyle: ButtonStyle {
-    let color: Color
+    let gradientColor: [Color]
+    let gradientStartPoint : UnitPoint
+    let gradientEndPoint : UnitPoint
     let cornerRaduis : CGFloat
     let strokColor : Color
     let strokeLineWidth : CGFloat
@@ -26,7 +28,7 @@ struct RotatingButtonStyle: ButtonStyle {
         configuration.label
             .background(
                 RoundedRectangle(cornerRadius: cornerRaduis)
-                    .fill(color)
+                    .fill(LinearGradient(colors:gradientColor, startPoint:gradientStartPoint, endPoint:gradientEndPoint))
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRaduis)
                             .stroke(strokColor, lineWidth: strokeLineWidth)
