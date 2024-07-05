@@ -203,6 +203,7 @@ public struct RotationButton: View {
     var fontDesign : Font.Design
     var fontWeigt : Font.Weight
     var color: Color
+    var gradientColor: [Color]
     var cornerRaduis : CGFloat
     var strokColor : Color
     var strokeLineWidth : CGFloat
@@ -213,8 +214,13 @@ public struct RotationButton: View {
     var foregroundColor : Color
     var rotationDegree : CGFloat
     var scaleEffect : CGFloat
-    
-    public init(text: String, icon :Image, action: @escaping () -> Void, iconMaxWidth: CGFloat, iconMaxHeight: CGFloat, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color, cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat) {
+    var gradientStartPoint : UnitPoint
+    var gradientEndPoint : UnitPoint
+    var maxWidth : CGFloat
+    var maxHeight : CGFloat
+    var iconCornorRaduis:CGFloat
+    var spaceBetweenTextAndImg: CGFloat
+    public init(text: String, icon :Image, action: @escaping () -> Void, iconMaxWidth: CGFloat, iconMaxHeight: CGFloat, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color,gradientColor:[Color] ,cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat,gradientStartPoint:UnitPoint,gradientEndPoint: UnitPoint,maxWidth:CGFloat,maxHeight:CGFloat,iconCornorRaduis:CGFloat,spaceBetweenTextAndImg: CGFloat) {
         self.text = text
         self.icon = icon
         self.action = action
@@ -234,15 +240,18 @@ public struct RotationButton: View {
         self.foregroundColor = foregroundColor
         self.rotationDegree = rotationDegree
         self.scaleEffect = scaleEffect
+        self.gradientColor = gradientColor
+        self.gradientStartPoint = gradientStartPoint
+        self.gradientEndPoint = gradientEndPoint
+        self.maxWidth = maxWidth
+        self.maxHeight = maxHeight
+        self.iconCornorRaduis = iconCornorRaduis
+        self.spaceBetweenTextAndImg = spaceBetweenTextAndImg
     }
     
     public var body: some View {
         Button(action: action) {
-//            Text(text)
-//                .font(.system(size: fontSize, weight:fontWeigt, design: fontDesign))
-//                .padding()
-//                .frame(maxWidth:maxWidth, maxHeight: maxHeight)
-            HStack(alignment: .center,spacing: 0){
+            HStack(alignment: .center,spacing: spaceBetweenTextAndImg){
                 Text(text)
                     .font(.system(size: fontSize, weight:fontWeigt, design: fontDesign))
                     .padding()
@@ -250,11 +259,11 @@ public struct RotationButton: View {
                 icon
                     .resizable()
                     .frame(maxWidth: iconMaxWidth, maxHeight:iconMaxHeight)
-                    .cornerRadius(22)
+                    .cornerRadius(iconCornorRaduis)
             }
-            .frame(maxWidth: 280,maxHeight: 50)
+            .frame(maxWidth: maxHeight,maxHeight: maxHeight)
         }
-        .buttonStyle(RotatingButtonStyle(color: color, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect))
+        .buttonStyle(RotatingButtonStyle(gradientColor: gradientColor, gradientStartPoint: gradientStartPoint, gradientEndPoint: gradientEndPoint, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect))
     }
 }
 
