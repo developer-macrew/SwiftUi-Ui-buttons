@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftUIButtons",
+//    platforms: [
+//        .iOS(.v14)
+//    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -21,24 +24,3 @@ let package = Package(
             dependencies: ["SwiftUIButtons"]),
     ]
 )
-/*
- let package = Package(
-     name: "MyButtonPackage",
-     platforms: [
-         .iOS(.v14)
-     ],
-     products: [
-         .library(
-             name: "MyButtonPackage",
-             targets: ["MyButtonPackage"]),
-     ],
-     targets: [
-         .target(
-             name: "MyButtonPackage",
-             dependencies: []),
-         .testTarget(
-             name: "MyButtonPackageTests",
-             dependencies: ["MyButtonPackage"]),
-     ]
- )
- */
