@@ -261,7 +261,7 @@ public struct RotationButton: View {
                     .frame(maxWidth: iconMaxWidth, maxHeight:iconMaxHeight)
                     .cornerRadius(iconCornorRaduis)
             }
-            .frame(maxWidth: maxHeight,maxHeight: maxHeight)
+            .frame(maxWidth: maxWidth,maxHeight: maxHeight)
         }
         .buttonStyle(RotatingButtonStyle(gradientColor: gradientColor, gradientStartPoint: gradientStartPoint, gradientEndPoint: gradientEndPoint, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect))
     }
