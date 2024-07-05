@@ -133,8 +133,17 @@ public struct IconButton: View {
     var shadowRaduis : CGFloat
     var shadowOffsetHorizontally : CGFloat
     var shadowOffsetVertically : CGFloat
+    var alignment : Alignment
+    var text : String
+    var fontSize : CGFloat
+    var fontWeight : Font.Weight
+    var fontDesign : Font.Design
+    var textShadowColor : Color
+    var textShadowRaduis : CGFloat
+    var textShadowOffsetHorizontally : CGFloat
+    var textShadowOffsetVertically : CGFloat
     
-    public init(icon: Image, action: @escaping () -> Void,contentMode: ContentMode , backgroundColor: Color, foregroundColor: Color, cornorRaduis: CGFloat, strokeColor: Color, strokeLineWidth:CGFloat,shadowColor: Color,shadowRaduis: CGFloat, shadowOffsetHorizontally:CGFloat,shadowOffsetVertically:CGFloat,maxWidth:CGFloat,maxHeight:CGFloat) {
+    public init(icon: Image, action: @escaping () -> Void,contentMode: ContentMode , backgroundColor: Color, foregroundColor: Color, cornorRaduis: CGFloat, strokeColor: Color, strokeLineWidth:CGFloat,shadowColor: Color,shadowRaduis: CGFloat, shadowOffsetHorizontally:CGFloat,shadowOffsetVertically:CGFloat,maxWidth:CGFloat,maxHeight:CGFloat,alignment: Alignment,text: String,fontSize : CGFloat,fontWeight:Font.Weight,fontDesign : Font.Design,textShadowColor:Color,textShadowRaduis:CGFloat,textShadowOffsetHorizontally: CGFloat,textShadowOffsetVertically:CGFloat) {
         self.icon = icon
         self.action = action
         self.backgroundColor = backgroundColor
@@ -149,21 +158,39 @@ public struct IconButton: View {
         self.maxWidth = maxWidth
         self.maxHeight = maxHeight
         self.contentMode = contentMode
+        self.alignment = alignment
+        self.text = text
+        self.fontSize = fontSize
+        self.fontDesign = fontDesign
+        self.fontWeight = fontWeight
+        self.textShadowColor = textShadowColor
+        self.textShadowRaduis = textShadowRaduis
+        self.textShadowOffsetHorizontally = textShadowOffsetHorizontally
+        self.textShadowOffsetVertically = textShadowOffsetVertically
     }
     
     public var body: some View {
         Button(action: action) {
-            icon
-                .resizable()
-                .aspectRatio(contentMode: contentMode)
-                .frame(maxWidth: maxWidth,maxHeight: maxHeight)
-                .foregroundColor(foregroundColor)
-                .background(backgroundColor)
-                .cornerRadius(cornerRadius)
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(strokeColor, lineWidth: strokeLineWidth)
-                )   .shadow(color: shadowColor, radius:shadowRaduis, x: shadowOffsetHorizontally, y: shadowOffsetVertically) // Apply shadow here
+            ZStack {
+                icon
+                    .resizable()
+                    .aspectRatio(contentMode: contentMode)
+                    .frame(maxWidth: maxWidth,maxHeight: maxHeight)
+                    .foregroundColor(foregroundColor)
+                    .background(backgroundColor)
+                    .cornerRadius(cornerRadius)
+                    .shadow(color: shadowColor, radius:shadowRaduis, x: shadowOffsetHorizontally, y: shadowOffsetVertically) // Apply shadow here
+                
+                Text(text)
+                    .foregroundColor(foregroundColor)
+                    .font(.system(size: fontSize, weight:fontWeight, design: fontDesign))
+                    .shadow(color: textShadowColor, radius: textShadowRaduis, x: textShadowOffsetHorizontally, y:textShadowOffsetVertically)
+                    .frame(maxWidth: maxWidth - 20,maxHeight: maxHeight - 20,alignment:alignment)
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(strokeColor, lineWidth: strokeLineWidth)
+            )
         }
     }
 }
