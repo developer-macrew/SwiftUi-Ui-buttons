@@ -121,35 +121,49 @@ public struct OutlineButton: View {
 public struct IconButton: View {
     var icon: Image
     var action: () -> Void
+    var contentMode: ContentMode
+    var maxWidth : CGFloat
+    var maxHeight : CGFloat
     var backgroundColor : Color
     var foregroundColor : Color
     var cornerRadius : CGFloat
-    var roundedCornorRaduis : CGFloat
     var strokeColor : Color
-    var stroleLineWidth : CGFloat
+    var strokeLineWidth : CGFloat
+    var shadowColor : Color
+    var shadowRaduis : CGFloat
+    var shadowOffsetHorizontally : CGFloat
+    var shadowOffsetVertically : CGFloat
     
-    public init(icon: Image, action: @escaping () -> Void, backgroundColor: Color, foregroundColor: Color, cornorRaduis: CGFloat, roundedCornorRaduis: CGFloat, strokeColor: Color, strokeLineWidth:CGFloat) {
+    public init(icon: Image, action: @escaping () -> Void,contentMode: ContentMode , backgroundColor: Color, foregroundColor: Color, cornorRaduis: CGFloat, strokeColor: Color, strokeLineWidth:CGFloat,shadowColor: Color,shadowRaduis: CGFloat, shadowOffsetHorizontally:CGFloat,shadowOffsetVertically:CGFloat,maxWidth:CGFloat,maxHeight:CGFloat) {
         self.icon = icon
         self.action = action
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
         self.cornerRadius = cornorRaduis
-        self.roundedCornorRaduis = roundedCornorRaduis
         self.strokeColor = strokeColor
-        self.stroleLineWidth = strokeLineWidth
+        self.strokeLineWidth = strokeLineWidth
+        self.shadowColor = shadowColor
+        self.shadowRaduis = shadowRaduis
+        self.shadowOffsetHorizontally = shadowOffsetHorizontally
+        self.shadowOffsetVertically = shadowOffsetVertically
+        self.maxWidth = maxWidth
+        self.maxHeight = maxHeight
+        self.contentMode = contentMode
     }
     
     public var body: some View {
         Button(action: action) {
             icon
+                .resizable()
+                .aspectRatio(contentMode: contentMode)
+                .frame(maxWidth: maxWidth,maxHeight: maxHeight)
                 .foregroundColor(foregroundColor)
-                .padding()
                 .background(backgroundColor)
                 .cornerRadius(cornerRadius)
                 .overlay(
-                    RoundedRectangle(cornerRadius: roundedCornorRaduis)
-                        .stroke(strokeColor, lineWidth: stroleLineWidth)
-                )
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(strokeColor, lineWidth: strokeLineWidth)
+                )   .shadow(color: shadowColor, radius:shadowRaduis, x: shadowOffsetHorizontally, y: shadowOffsetVertically) // Apply shadow here
         }
     }
 }
