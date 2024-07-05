@@ -261,7 +261,9 @@ public struct RotationButton: View {
     var maxHeight : CGFloat
     var iconCornorRaduis:CGFloat
     var spaceBetweenTextAndImg: CGFloat
-    public init(text: String, icon :Image, action: @escaping () -> Void, iconMaxWidth: CGFloat, iconMaxHeight: CGFloat, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color,gradientColor:[Color] ,cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat,gradientStartPoint:UnitPoint,gradientEndPoint: UnitPoint,maxWidth:CGFloat,maxHeight:CGFloat,iconCornorRaduis:CGFloat,spaceBetweenTextAndImg: CGFloat) {
+    var roatationType: RotationType
+    
+    public init(text: String, icon :Image, action: @escaping () -> Void, iconMaxWidth: CGFloat, iconMaxHeight: CGFloat, fontSize: CGFloat, fontDesign: Font.Design, fontWeigt: Font.Weight, color: Color,gradientColor:[Color] ,cornerRaduis: CGFloat, strokColor: Color, strokeLineWidth: CGFloat, shadowColor: Color, shadowOpacity: CGFloat, shadowOffsetHorizontally: CGFloat, shadowOffsetVertically: CGFloat, foregroundColor: Color, rotationDegree: CGFloat, scaleEffect: CGFloat,gradientStartPoint:UnitPoint,gradientEndPoint: UnitPoint,maxWidth:CGFloat,maxHeight:CGFloat,iconCornorRaduis:CGFloat,spaceBetweenTextAndImg: CGFloat,rotationType:RotationType) {
         self.text = text
         self.icon = icon
         self.action = action
@@ -288,6 +290,7 @@ public struct RotationButton: View {
         self.maxHeight = maxHeight
         self.iconCornorRaduis = iconCornorRaduis
         self.spaceBetweenTextAndImg = spaceBetweenTextAndImg
+        self.roatationType = rotationType
     }
     
     public var body: some View {
@@ -304,7 +307,7 @@ public struct RotationButton: View {
             }
             .frame(maxWidth: maxWidth,maxHeight: maxHeight)
         }
-        .buttonStyle(RotatingButtonStyle(gradientColor: gradientColor, gradientStartPoint: gradientStartPoint, gradientEndPoint: gradientEndPoint, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect))
+        .buttonStyle(RotatingButtonStyle(gradientColor: gradientColor, gradientStartPoint: gradientStartPoint, gradientEndPoint: gradientEndPoint, cornerRaduis: cornerRaduis, strokColor: strokColor, strokeLineWidth: strokeLineWidth, shadowColor: shadowColor, shadowOpacity: shadowOpacity, shadowOffsetHorizontally: shadowOffsetHorizontally, shadowOffsetVertically: shadowOffsetVertically, foregroundColor: foregroundColor, rotationDegree: rotationDegree, scaleEffect: scaleEffect, rotationType: roatationType))
     }
 }
 
